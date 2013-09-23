@@ -98,9 +98,13 @@
   [table-or-region-name]
   (.compact (hbase-admin) (to-bytes table-or-region-name)))
 
-(defn create-table
-  [table-descriptor]
-  (.createTable (hbase-admin) table-descriptor))
+  (defn create-table
+    (
+     [table-descriptor]
+     (.createTable (hbase-admin) table-descriptor))
+    (
+     [table-descriptor split-keys]
+     (.createTable (hbase-admin) table-descriptor split-keys)))
 
 (defn create-table-async
   [^HTableDescriptor table-descriptor split-keys]
